@@ -25,4 +25,4 @@ terraform destroy -auto-approve'''
 }
 }
 }
-}
+}}
