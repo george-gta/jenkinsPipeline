@@ -1,6 +1,12 @@
 pipeline {
    agent {label "kube-agent" }
    stages {
+     stage('Git') {
+         steps {
+            git credentialsId: 'github_key', url: 'https://github.com/george-gta/jenkinsPipeline.git'
+            
+         }
+    }
     stage('terraform') {
         steps{
            sh label: '', script: '''cd
@@ -16,7 +22,6 @@ myvar=`cat ipterraformvm.txt`
 echo $myvar
 ssh -tt root@$myvar \'docker ps -a; exit\'
 terraform destroy -auto-approve'''
-}
 }
 }
 }
